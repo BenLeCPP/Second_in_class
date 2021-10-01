@@ -67,8 +67,8 @@ void checkSquare(int grid[3][3])
 
 void main() 
 {
-    int a[3][3] ={4, 9, 2, 3, 5, 7, 8, 1, 6};
-
+    int a[3][3] = {4, 9, 2, 3, 5, 7, 8, 1, 6};
+    int b[3][3] = {5,3, 6, 8, 4, 7, 1, 9, 2};
 
     printf("\n---Magic Square---\n");
     for(int i=0; i<3; i++) 
@@ -79,8 +79,18 @@ void main()
         }
         printf("\n");
     }
-
     checkSquare(a);
+
+    printf("\n---Magic Square---\n");
+    for(int i=0; i<3; i++) 
+    {
+        for(int j=0; j<3; j++) 
+        {
+            printf("%3d\t", b[i][j]);
+        }
+        printf("\n");
+    }
+    checkSquare(b);
     
 
   
