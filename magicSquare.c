@@ -1,69 +1,87 @@
 #include <stdio.h>
-void main() 
+#include <stdbool.h>
+void checkSquare(int grid[3][3])
 {
-    int grid[3][3];
-    int i, j;
-    int rowsum, columnsum, diagonalsum;
-
-    printf("Enter the elements of the square \n");
-        for(i=0; i<3; i++) 
+    bool invalid = false;
+    for(int i=0;i<2;i++)
+    {
+        for(int j=0;j<2;j++)
         {
-            for(j=0; j<3; j++) 
+            if(grid[i][j]<1||grid[i][j]>9)
+            invalid = true;
+        }
+    }
+    if (invalid)
+    {
+        printf("This is not a magic square.\n");
+    }
+  
+    else
+    {
+        // calculate diagonal sum
+        int diagonalSum = grid[0][0] + grid[1][1] + grid[2][2] ;
+        bool isValid = true; 
+
+        // calculate row sum
+        for(int i=0; i<3; i++) 
+        {
+            int rowSum = 0;
+            for(int j=0; j<3; j++) 
             {
-                scanf("%d", &grid[i][j]);
+                rowSum = rowSum + grid[i][j];
+            }
+            if(rowSum != diagonalSum) 
+            {
+                isValid = false;
+                break;
             }
         }
 
-    printf("\n\nMATRIX is\n");
-    for(i=0; i<3; i++) 
-    {
-        for(j=0; j<3; j++) 
+        // calculate column sum
+        for(int i=0; i<3; i++) 
         {
-            printf("%3d\t", grid[i][j]);
+            int columnSum =0;
+            for(int j=0; j<3; j++) 
+            {
+                columnSum = columnSum + grid[j][i];
+            }
+            if(columnSum != diagonalSum) 
+            {
+                isValid = false;
+                break;
+            }
+        }
+
+        if(isValid)
+        {
+            printf("This is a magic square.\n");
+        }
+        else
+        {
+            printf("This is not a magic square. \n");
+
+        }
+        
+    }
+}
+
+void main() 
+{
+    int a[3][3] ={4, 9, 2, 3, 5, 7, 8, 1, 6};
+
+
+    printf("\n---Magic Square---\n");
+    for(int i=0; i<3; i++) 
+    {
+        for(int j=0; j<3; j++) 
+        {
+            printf("%3d\t", a[i][j]);
         }
         printf("\n");
     }
 
-  // calculate diagonal sum
-    diagonalsum = 0;
-    for(i=0; i<3; i++) 
-    {
-        for(j=0; j<3; j++) 
-        {
-            if(i==j) 
-            {
-                diagonalsum = diagonalsum + grid[i][j];
-            }
-        }
-    }
+    checkSquare(a);
+    
 
-  // calculate row sum
-    rowsum =0;
-    for(i=0; i<3; i++) 
-    {
-        for(j=0; j<3; j++) 
-        {
-            rowsum = rowsum + grid[i][j];
-        }
-        if(rowsum != diagonalsum) 
-        {
-            printf("\nThis is not a magic square");
-            return;
-        }
-    }
-
-  // calculate column sum
-    columnsum =0;
-    for(i=0; i<3; i++) 
-    {
-        for(j=0; j<3; j++) 
-        {
-            columnsum = columnsum + grid[j][i];
-        }
-        if(columnsum != diagonalsum) 
-        {
-            printf("\nThis is not a magic square");
-            return;
-        }
-    }
+  
 }
