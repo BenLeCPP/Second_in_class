@@ -4,7 +4,7 @@
 #include <time.h>
 #include <stdbool.h>
 
-void checkSquare(int grid[3][3], bool isValid)
+void checkSquare(int grid[3][3])
 {
     bool invalid = false;
     for(int i=0;i<2;i++)
@@ -101,10 +101,14 @@ int main()
         printf("\n");
     }
     
-    while (isValid ==false)
+    while (isValid == false )
     {
         checkSquare(array);
-        isValid = true;
+        attempt++;
+        if (isValid = true)
+        {
+            printf("The total of squares generated before success: %d", attempt);
+        }
         
     }
     return 0;
